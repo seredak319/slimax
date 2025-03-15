@@ -3,6 +3,13 @@ project(slimaks LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 add_subdirectory(src/application)
 
 set(SOURCES
@@ -24,6 +31,7 @@ add_executable(${PROJECT_NAME}
     ${UI_HEADERS}
     src/application/snail.h src/application/snail.cpp
 )
+
 
 target_link_libraries(slimaks
     PRIVATE

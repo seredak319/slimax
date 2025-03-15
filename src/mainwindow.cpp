@@ -1,3 +1,5 @@
+#include <QDebug>
+#include <iostream>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -11,4 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pushButton_clicked() {
+    qDebug() << "Kliknięto przycisk!";
+    std::cout << "Hello from button" << std::endl;
 }
