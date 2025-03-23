@@ -21,6 +21,8 @@ set(SOURCES
 
 set(HEADERS
         src/controller/mainwindow.h
+        src/view/model/PlantView.cpp
+        src/view/model/PlantView.h
 )
 
 qt_standard_project_setup()

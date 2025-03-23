@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->progressBar->setMinimum(0);
     ui->progressBar->setValue(0);
+
+    ui->horizontalSlider_8->setEnabled(ui->checkBox->isChecked());
+    connect(ui->checkBox, &QCheckBox::toggled, ui->horizontalSlider_8, &QWidget::setEnabled);
 }
 
 MainWindow::~MainWindow() {
@@ -31,6 +34,9 @@ void MainWindow::on_pushButton_clicked() {
     std::cout << "Liczba iteracji (dni): " << ui->spinBox_6->value() << std::endl;
     std::cout << "Wsp. zarlocznosci od wieku: " << ui->horizontalSlider_6->value() << std::endl;
     std::cout << "Wsp. wzrostu od objetosci: " << ui->horizontalSlider_7->value() << std::endl;
+    std::cout << "Tepo symulacji: " << ui->horizontalSlider_2->value() << std::endl;
+    std::cout << "Czy dodac losowosc?: " << ui->checkBox->isChecked() << std::endl;
+    std::cout << "Wspolczynnik losowosci?: " << ui->horizontalSlider_8->value() << std::endl;
     std::cout << "=== END ===" << std::endl;
 
     SimulationContext context(
@@ -50,7 +56,7 @@ void MainWindow::on_pushButton_clicked() {
     ui->progressBar->setMaximum(context.iterationCount());
     ui->progressBar->setValue(0);
 
-    m_timer->start(100);
+    m_timer->start(SIMULATION_INTERVAL_MS - ui->horizontalSlider_2->value()*0.01*SIMULATION_INTERVAL_MS);
 
     std::cout << "Simulation started\n";
 }

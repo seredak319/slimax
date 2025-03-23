@@ -26,6 +26,7 @@ private slots:
     void simulateStep();
 
 private:
+    static constexpr int SIMULATION_INTERVAL_MS = 1000;
     Ui::MainWindow *ui;
     QTimer *m_timer;
     SimulationManager m_simulatorManager;

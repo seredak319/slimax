@@ -19,12 +19,19 @@ public:
                       int itCount);
 
     int numberOfSnails() const;
+
     int snailAge() const;
+
     int snailAppetite() const;
+
     int snailGrowthRate() const;
+
     int numberOfPlants() const;
+
     int plantVolume() const;
+
     int plantGrowthRate() const;
+
     int iterationCount() const;
 
 private:
