@@ -9,32 +9,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/src/view)
 
 add_subdirectory(src/application)
 
 set(SOURCES
-    src/main.cpp
-    src/mainwindow.cpp
+        src/main.cpp
+        src/controller/mainwindow.cpp
+        src/view/mainwindow.ui
 )
 
 set(HEADERS
-    src/mainwindow.h
+        src/controller/mainwindow.h
 )
-
-qt_wrap_ui(UI_HEADERS view/mainwindow.ui)
 
 qt_standard_project_setup()
 
 add_executable(${PROJECT_NAME}
-    ${SOURCES}
-    ${HEADERS}
-    ${UI_HEADERS}
-    src/application/snail.h src/application/snail.cpp
+        ${SOURCES}
+        ${HEADERS}
+        src/application/model/snail.h src/application/model/snail.cpp
 )
 
-
 target_link_libraries(slimaks
-    PRIVATE
+        PRIVATE
         Qt6::Core
         Qt6::Widgets
         application
@@ -43,14 +41,15 @@ target_link_libraries(slimaks
 include(GNUInstallDirs)
 
 install(TARGETS slimaks
-    BUNDLE  DESTINATION .
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        BUNDLE  DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 qt_generate_deploy_app_script(
-    TARGET slimaks
-    OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
+        TARGET slimaks
+        OUTPUT_SCRIPT deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
 )
+
 install(SCRIPT ${deploy_script})

@@ -1,11 +1,20 @@
 set(APP_SOURCES
-    snail.cpp
+        model/snail.cpp
     # plant.cpp
 )
 
 set(APP_HEADERS
-    snail.h
-    # plant.h
+        model/base/Organism.cpp
+        model/base/Organism.h
+        model/Snail.cpp
+        model/Snail.h
+        simulation/input/SimulationContext.cpp
+        simulation/input/SimulationContext.h
+        simulation/output/IterationResult.cpp
+        simulation/output/IterationResult.h
+        simulation/SimulationManager.cpp
+        simulation/SimulationManager.h
+        # plant.h
 )
 
 add_library(application STATIC
