@@ -21,6 +21,8 @@ set(APP_HEADERS
         model/Aquarium.h
         serivce/AquariumService.cpp
         serivce/AquariumService.h
+        ../main.cpp
+        ../main.cpp
         # plant.h
 )
 

@@ -59,3 +59,33 @@ qt_generate_deploy_app_script(
 )
 
 install(SCRIPT ${deploy_script})
+
+file(COPY
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_1.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_2.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_3.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_4.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_5.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_6.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_7.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_8.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_9.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_10.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_11.png
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_12.png
+        DESTINATION
+        ${CMAKE_CURRENT_BINARY_DIR}/resources
+)
+
+file(COPY
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/snail/snail.png
+        DESTINATION
+        ${CMAKE_CURRENT_BINARY_DIR}/resources
+)
+
+
+file(COPY
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/background/background.jpg
+        DESTINATION
+        ${CMAKE_CURRENT_BINARY_DIR}/resources
+)
