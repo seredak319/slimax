@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "simulation/SimulationManager.h"
+#include "../view/model/AquariumView.h"
+#include "serivce/AquariumService.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,6 +32,9 @@ private:
     Ui::MainWindow *ui;
     QTimer *m_timer;
     SimulationManager m_simulatorManager;
+    AquariumView *m_aquariumView;
+    AquariumService *m_aquariumService;
+    Aquarium m_aquarium;
 };
 
 #endif // MAINWINDOW_H

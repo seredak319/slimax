@@ -14,6 +14,13 @@ set(APP_HEADERS
         simulation/output/IterationResult.h
         simulation/SimulationManager.cpp
         simulation/SimulationManager.h
+        model/Plant.cpp
+        model/Plant.h
+        model/Plant.h
+        model/Aquarium.cpp
+        model/Aquarium.h
+        serivce/AquariumService.cpp
+        serivce/AquariumService.h
         # plant.h
 )
 

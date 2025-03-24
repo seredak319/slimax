@@ -23,6 +23,10 @@ set(HEADERS
         src/controller/mainwindow.h
         src/view/model/PlantView.cpp
         src/view/model/PlantView.h
+        src/view/model/AquariumView.cpp
+        src/view/model/AquariumView.h
+        src/view/model/SnailView.cpp
+        src/view/model/SnailView.h
 )
 
 qt_standard_project_setup()

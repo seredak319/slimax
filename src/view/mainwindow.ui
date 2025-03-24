@@ -541,17 +541,20 @@
      <string>Czy dodać losowość?</string>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="simulationFrame">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>10</y>
       <width>721</width>
-      <height>221</height>
+      <height>211</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::FocusPolicy::NoFocus</enum>
+    </property>
     <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+     <enum>QFrame::Shape::NoFrame</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>

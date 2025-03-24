@@ -14,7 +14,8 @@
 class Organism {
 
 public:
-    Organism() = default;
+
+    Organism(int x, int y);
 
     virtual ~Organism() = default;
 
@@ -22,6 +23,18 @@ public:
      * @brief Metoda wywoływana co cykl symulacji, pozwala na wzrost, zmiany itp.
      */
     virtual void simulateDay() = 0;
+
+    int x() const;
+
+    int y() const;
+
+    void setX(int newX);
+
+    void setY(int newY);
+
+protected:
+    int m_x;
+    int m_y;
 };
 
 

@@ -5,12 +5,12 @@
 #ifndef SLIMAKS_ITERATIONRESULT_H
 #define SLIMAKS_ITERATIONRESULT_H
 
+#include "model/Aquarium.h"
 
-#pragma once
+class IterationResult {
 
-struct IterationResult {
-    int finalSnailCount = 0;
-    int finalPlantCount = 0;
+private:
+    Aquarium m_aquarium;
 };
 
 

@@ -11,24 +11,11 @@
 #include "simulation/input/SimulationContext.h"
 #include "simulation/output/IterationResult.h"
 
-struct SimulationState {
-    int currentIteration = 0;
-    int totalIterations = 0;
-};
-
 class SimulationManager
 {
 public:
-    void startSimulation(const SimulationContext &m_context);
-    void simulateOneStep();
-    bool isFinished() const;
-
-    int getCurrentIteration() const { return m_state.currentIteration; }
-    IterationResult getCurrentResult() const;
-
-private:
-    SimulationState m_state;
-    IterationResult m_result;
+    void simulate(Aquarium &aquarium);
+    bool isFinished(Aquarium &aquarium);
 };
 
 #endif //SLIMAKS_SIMULATIONMANAGER_H

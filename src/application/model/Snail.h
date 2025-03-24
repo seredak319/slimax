@@ -18,18 +18,24 @@ class Snail : public Organism {
 
 public:
 
-    Snail(int initialAge, double initialAppetite, double initialGrowthRate, double appetiteAgeCorrelation);
+    Snail(int x, int y, int initialAge, int initialAppetite, int initialGrowthRate,
+          int appetiteAgeCorrelation);
 
     ~Snail() override = default;
 
-    void simulateDay() override {
+    void simulateDay() override;
 
-    }
+    int getCurrentSize();
+
+
 
 private:
     int m_initialAge;            ///< Wiek ślimaka
-    double m_initialAppetite;    ///< Bieżąca żarłoczność
-    double m_initialGrowthRate;  ///< Tempo wzrostu żarłoczności
+    int m_initialAppetite;    ///< Bieżąca żarłoczność
+    int m_initialGrowthRate;  ///< Tempo wzrostu żarłoczności
+    int m_appetiteAgeCorrelation;
+
+    int m_currentSize;
 };
 
 

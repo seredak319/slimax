@@ -16,7 +16,10 @@ public:
                       int numPlants,
                       int pVolume,
                       int pGrowthRate,
-                      int itCount);
+                      int itCount,
+                      int aquariumWidth,
+                      bool isRandomEnabled,
+                      int randomRate);
 
     int numberOfSnails() const;
 
@@ -34,6 +37,12 @@ public:
 
     int iterationCount() const;
 
+    int aquariumWidth() const;
+
+    bool isRandomEnabled() const;
+
+    int randomRate() const;
+
 private:
     int m_numberOfSnails;
     int m_snailAge;
@@ -45,6 +54,10 @@ private:
     int m_plantGrowthRate;
 
     int m_iterationCount;
+    int m_aquariumWidth;
+
+    int m_isRandomEnabled;
+    int m_randomRate;
 };
 
 #endif //SLIMAKS_SIMULATIONCONTEXT_H
