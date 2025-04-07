@@ -3,6 +3,7 @@
 
 PlantView::PlantView(QGraphicsItem *parent)
         : QGraphicsPixmapItem(parent) {
+
     m_pixmaps.reserve(12);
     m_pixmaps.push_back(QPixmap("resources/wild_plant_grow_1.png"));
     m_pixmaps.push_back(QPixmap("resources/wild_plant_grow_2.png"));
@@ -22,5 +23,16 @@ PlantView::PlantView(QGraphicsItem *parent)
 void PlantView::setGrowthStage(int stage) {
     if (stage < 0) stage = 0;
     if (stage >= m_pixmaps.size()) stage = m_pixmaps.size() - 1;
-    setPixmap(m_pixmaps[stage]);
+
+    double sizeFactor = 4.25;
+    QPixmap basePixmap = m_pixmaps[stage];
+
+    QPixmap scaled = basePixmap.scaled(
+            static_cast<int>(basePixmap.width() * sizeFactor),
+            static_cast<int>(basePixmap.height() * sizeFactor),
+            Qt::KeepAspectRatio,
+            Qt::FastTransformation
+    );
+
+    setPixmap(scaled);
 }

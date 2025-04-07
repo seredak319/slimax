@@ -51,9 +51,11 @@ void MainWindow::on_pushButton_clicked() {
             ui->spinBox_2->value(),
             ui->horizontalSlider->value(),
             ui->horizontalSlider_3->value(),
+            ui->horizontalSlider_6->value(),
             ui->spinBox_3->value(),
             ui->spinBox_4->value(),
             ui->horizontalSlider_4->value(),
+            ui->horizontalSlider_7->value(),
             ui->spinBox_6->value(),
             ui->simulationFrame->width(),
             ui->checkBox->isChecked(),
@@ -65,7 +67,6 @@ void MainWindow::on_pushButton_clicked() {
 
     m_aquarium = m_aquariumService->initAquariumBasedOnApplicationContext(context);
 
-    // Zapisujemy stan akwarium w polu m_aquarium
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(context.iterationCount());
     ui->progressBar->setValue(0);

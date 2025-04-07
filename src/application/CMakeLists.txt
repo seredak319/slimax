@@ -1,36 +1,30 @@
+# Lista plików źródłowych – tylko logika, bez main.cpp
 set(APP_SOURCES
         model/snail.cpp
-    # plant.cpp
+        model/base/Organism.cpp
+        simulation/input/SimulationContext.cpp
+        simulation/SimulationManager.cpp
+        model/Plant.cpp
+        model/Aquarium.cpp
+        serivce/AquariumService.cpp
 )
 
+# Lista plików nagłówkowych
 set(APP_HEADERS
-        model/base/Organism.cpp
+        model/snail.h
         model/base/Organism.h
-        model/Snail.cpp
-        model/Snail.h
-        simulation/input/SimulationContext.cpp
         simulation/input/SimulationContext.h
-        simulation/output/IterationResult.cpp
-        simulation/output/IterationResult.h
-        simulation/SimulationManager.cpp
         simulation/SimulationManager.h
-        model/Plant.cpp
         model/Plant.h
-        model/Plant.h
-        model/Aquarium.cpp
         model/Aquarium.h
-        serivce/AquariumService.cpp
         serivce/AquariumService.h
-        ../main.cpp
-        ../main.cpp
-        # plant.h
 )
 
 add_library(application STATIC
-    ${APP_SOURCES}
-    ${APP_HEADERS}
+        ${APP_SOURCES}
+        ${APP_HEADERS}
 )
 
 target_include_directories(application PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}
 )

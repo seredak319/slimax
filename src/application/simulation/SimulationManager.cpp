@@ -11,6 +11,7 @@ void SimulationManager::simulate(Aquarium &aquarium) {
         std::cout << "[Iteration " << aquarium.getCurrentIteration() << "]\n";
     }
     aquarium.increaseIteration();
+    aquarium.simulateStep();
 }
 
 bool SimulationManager::isFinished(Aquarium &aquarium) {

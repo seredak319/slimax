@@ -1,5 +1,6 @@
 #include "SnailView.h"
 #include <QPainter>
+#include <iostream>
 
 SnailView::SnailView(QGraphicsItem *parent)
         : QGraphicsPixmapItem(parent), m_currentStage(0) {
@@ -8,6 +9,10 @@ SnailView::SnailView(QGraphicsItem *parent)
 
     // Ustawiamy początkowy etap wzrostu
     setGrowthStage(m_currentStage);
+}
+
+int SnailView::getCurrentHeight() const {
+    return pixmap().height();
 }
 
 void SnailView::setGrowthStage(int stage) {

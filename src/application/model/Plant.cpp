@@ -12,7 +12,9 @@ Plant::Plant(int x, int y, int initialSize, int initialGrowthRate, int sizeGrowt
 }
 
 void Plant::simulateDay() {
-    std::cout << "[Plant] simulate()" << std::endl;
+    m_currentSize = m_initialSize++;
+//    std::cout << "[Plant] simulate()" << std::endl;
+
 }
 
 int Plant::getCurrentSize() {

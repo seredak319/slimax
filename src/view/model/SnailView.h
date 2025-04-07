@@ -9,6 +9,7 @@ public:
 
     // Ustawia poziom wzrostu (0..11) i przeskalowuje obrazek
     void setGrowthStage(int stage);
+    int getCurrentHeight() const;
 
 private:
     QPixmap m_snailPixmap;  // Oryginalny obrazek ślimaka

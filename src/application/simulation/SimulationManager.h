@@ -9,7 +9,7 @@
 #pragma once
 
 #include "simulation/input/SimulationContext.h"
-#include "simulation/output/IterationResult.h"
+#include "model/Aquarium.h"
 
 class SimulationManager
 {

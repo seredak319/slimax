@@ -13,7 +13,8 @@ Snail::Snail(int x, int y, int initialAge, int initialAppetite, int growthRate,
 }
 
 void Snail::simulateDay() {
-    std::cout << "[Snail] simulate()" << std::endl;
+    m_currentSize = m_initialAge++;
+//    std::cout << "[Snail] simulate()" << std::endl;
 }
 
 int Snail::getCurrentSize() {

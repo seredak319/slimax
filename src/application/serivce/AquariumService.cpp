@@ -2,6 +2,7 @@
 #include <random>
 #include <memory>
 #include <algorithm>
+#include <iostream>
 #include "model/Aquarium.h"
 #include "model/Snail.h"
 #include "model/Plant.h"
@@ -16,53 +17,58 @@ Aquarium AquariumService::initAquariumBasedOnApplicationContext(const Simulation
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    // Dodaj ślimaki
+    //ślimaki
     for (int i = 0; i < numSnails; ++i) {
-        int x, y, age, appetite, growthRate;
+        int x, y, age, appetite, growthRate, appetiteAgeCorrelation;
         if (!context.isRandomEnabled()) {
             x = (i + 1) * aquariumWidth / (numSnails + 1);
-            y = 100;
+            y = 500;
             age = context.snailAge();
             appetite = context.snailAppetite();
             growthRate = context.snailGrowthRate();
+            appetiteAgeCorrelation = context.snailAppetiteAgeCorrelation();
         } else {
-            std::uniform_int_distribution<int> distX(0, aquariumWidth);
+            const int margin = 70;
+            std::uniform_int_distribution<int> distX(margin, aquariumWidth - margin);
+
             x = distX(gen);
             std::uniform_int_distribution<int> distYOffset(-10, 10);
             y = 100 + distYOffset(gen);
 
-            int maxDev = (context.randomRate() * 11) / 100;
-            std::uniform_int_distribution<int> distAge(-maxDev, maxDev);
-            age = std::clamp(context.snailAge() + distAge(gen), 0, 11);
+            std::uniform_int_distribution<int> distSize(-2, 2);
+            std::cout << distSize(gen);
+            age = std::clamp(context.snailAge() + distSize(gen), 0, 11);
 
             appetite = context.snailAppetite();
             growthRate = context.snailGrowthRate();
+            appetiteAgeCorrelation = context.snailAppetiteAgeCorrelation();
         }
-        int appetiteAgeCorrelation = 5;
         aquarium.addOrganism(std::make_shared<Snail>(x, y, age, appetite, growthRate, appetiteAgeCorrelation));
     }
 
-    // Dodaj rośliny
+    // rośliny
     for (int i = 0; i < numPlants; ++i) {
-        int x, y, size, growthRate;
+        int x, y, size, growthRate, sizeGrowthCorrelation;
         if (!context.isRandomEnabled()) {
-            x = (i + 1) * aquariumWidth / (numPlants + 1);
-            y = 300;
+            x = (i + 1) * aquariumWidth / (numPlants + 2);
+            y = 500;
             size = context.plantVolume();
             growthRate = context.plantGrowthRate();
+            sizeGrowthCorrelation = context.plantSizeGrowthCorrelation();
         } else {
-            std::uniform_int_distribution<int> distX(0, aquariumWidth);
+            const int margin = 110;
+            std::uniform_int_distribution<int> distX(margin, aquariumWidth - margin);
+
             x = distX(gen);
             std::uniform_int_distribution<int> distYOffset(-10, 10);
-            y = 300 + distYOffset(gen);
+            y = 200 + distYOffset(gen);
 
-            int maxDev = (context.randomRate() * 11) / 100;
-            std::uniform_int_distribution<int> distSize(-maxDev, maxDev);
+            std::uniform_int_distribution<int> distSize(-2, 2);
             size = std::clamp(context.plantVolume() + distSize(gen), 0, 11);
 
             growthRate = context.plantGrowthRate();
+            sizeGrowthCorrelation = context.plantSizeGrowthCorrelation();
         }
-        int sizeGrowthCorrelation = 5;
         aquarium.addOrganism(std::make_shared<Plant>(x, y, size, growthRate, sizeGrowthCorrelation));
     }
 

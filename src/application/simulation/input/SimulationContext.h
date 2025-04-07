@@ -13,9 +13,11 @@ public:
                       int sAge,
                       int sAppetite,
                       int sGrowthRate,
+                      int sAppetiteAgeCorrelation,
                       int numPlants,
                       int pVolume,
                       int pGrowthRate,
+                      int pSizeGrowthCorrelation,
                       int itCount,
                       int aquariumWidth,
                       bool isRandomEnabled,
@@ -29,11 +31,15 @@ public:
 
     int snailGrowthRate() const;
 
+    int snailAppetiteAgeCorrelation() const;
+
     int numberOfPlants() const;
 
     int plantVolume() const;
 
     int plantGrowthRate() const;
+
+    int plantSizeGrowthCorrelation() const;
 
     int iterationCount() const;
 
@@ -48,10 +54,12 @@ private:
     int m_snailAge;
     int m_snailAppetite;
     int m_snailGrowthRate;
+    int m_appetiteAgeCorrelation;
 
     int m_numberOfPlants;
     int m_plantVolume;
     int m_plantGrowthRate;
+    int m_plantSizeGrowthCorrelation;
 
     int m_iterationCount;
     int m_aquariumWidth;
