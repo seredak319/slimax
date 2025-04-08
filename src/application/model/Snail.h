@@ -27,6 +27,9 @@ public:
 
     int getCurrentSize();
 
+    int getAppetite() const;
+
+    int getAppetiteAgeCorrelation() const;
 
 
 private:
@@ -37,8 +40,6 @@ private:
 
     int m_currentSize;
 };
-
-
 
 
 #endif //SLIMAKS_SNAIL_H

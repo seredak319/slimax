@@ -14,12 +14,21 @@ public:
 
     int getCurrentSize();
 
+    void reduceSize(int amount);
+
 private:
     int m_initialSize;
+    int m_currentSize;
+    int m_plantVolume;
     int m_initialGrowthRate;
     int m_sizeGrowthCorrelation;
 
-    int m_currentSize;
+    static const int MINIMAL_PLANT_GROWTH_STATE;                // minimalny stan wzrostu rośliny
+    static const int MAXIMAL_PLANT_GROWTH_STATE;                // maksymalny stan wzrostu rośliny
+    static const int BASE_SNAIL_EATING_VALUE;                   // podstawowa wartość zjadania przez ślimaka
+    static const int BASE_PLANT_GROWTH_VALUE;                   // podstawowa wartość zjadania przez ślimaka
+    static const int BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE;   // poziom zmiany stanu wzrostu rośliny
+
 };
 
 #endif // SLIMAKS_PLANT_H

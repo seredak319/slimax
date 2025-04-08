@@ -20,3 +20,11 @@ void Snail::simulateDay() {
 int Snail::getCurrentSize() {
     return m_currentSize;
 }
+
+int Snail::getAppetite() const {
+    return m_initialAppetite;
+}
+
+int Snail::getAppetiteAgeCorrelation() const {
+    return m_appetiteAgeCorrelation;
+}
