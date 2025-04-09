@@ -4,7 +4,6 @@
 
 const int Plant::MINIMAL_PLANT_GROWTH_STATE = 0;
 const int Plant::MAXIMAL_PLANT_GROWTH_STATE = 11;
-const int Plant::BASE_SNAIL_EATING_VALUE = 50;
 const int Plant::BASE_PLANT_GROWTH_VALUE = 10;
 const int Plant::BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE = 100;
 
@@ -14,6 +13,7 @@ Plant::Plant(int x, int y, int initialSize, int initialGrowthRate, int sizeGrowt
                                                                                                 m_plantVolume(
                                                                                                         initialSize *
                                                                                                         BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE),
+                                                                                                m_isAlive(true),
                                                                                                 m_currentSize(
                                                                                                         initialSize),
                                                                                                 m_initialGrowthRate(
@@ -23,18 +23,19 @@ Plant::Plant(int x, int y, int initialSize, int initialGrowthRate, int sizeGrowt
 }
 
 void Plant::simulateDay() {
-    double normalizedInitialGrowth = m_initialGrowthRate * 0.01; // np. 50 -> 0.50
-    double normalizedSizeFactor = m_currentSize * m_sizeGrowthCorrelation * 0.01;
+    if (isPlantAlive()) {
+        double normalizedInitialGrowth = m_initialGrowthRate * 0.01;
+        double normalizedSizeFactor = m_currentSize * m_sizeGrowthCorrelation * 0.01;
 
-    double totalGrowthFactor = 1.0 + normalizedInitialGrowth + normalizedSizeFactor;
+        double totalGrowthFactor = 1.0 + normalizedInitialGrowth + normalizedSizeFactor;
 
-    int volumeGrowthIncrement = static_cast<int>(BASE_PLANT_GROWTH_VALUE * totalGrowthFactor);
+        int volumeGrowthIncrement = static_cast<int>(BASE_PLANT_GROWTH_VALUE * totalGrowthFactor);
 
-    int maxPlantVolume = BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE * MAXIMAL_PLANT_GROWTH_STATE;
-    if (m_plantVolume < maxPlantVolume) {
-        m_plantVolume = std::min(m_plantVolume + volumeGrowthIncrement, maxPlantVolume);
+        int maxPlantVolume = BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE * MAXIMAL_PLANT_GROWTH_STATE;
+        if (m_plantVolume < maxPlantVolume) {
+            m_plantVolume = std::min(m_plantVolume + volumeGrowthIncrement, maxPlantVolume);
+        }
     }
-
     m_currentSize = m_plantVolume / BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE;
 }
 
@@ -43,5 +44,20 @@ int Plant::getCurrentSize() {
 }
 
 void Plant::reduceSize(int amount) {
-    m_currentSize = std::max(m_currentSize - amount, 0);
+    if (isPlantAlive()) {
+        m_plantVolume = m_plantVolume - amount;
+
+        if (m_plantVolume <= 0) {
+            m_isAlive = false;
+        }
+        m_currentSize = m_plantVolume / BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE;
+    }
+}
+
+int Plant::getPlantVolume() const {
+    return m_plantVolume;
+}
+
+bool Plant::isPlantAlive() const {
+    return m_isAlive;
 }

@@ -14,6 +14,10 @@ public:
 
     int getCurrentSize();
 
+    int getPlantVolume() const;
+
+    bool isPlantAlive() const;
+
     void reduceSize(int amount);
 
 private:
@@ -22,10 +26,10 @@ private:
     int m_plantVolume;
     int m_initialGrowthRate;
     int m_sizeGrowthCorrelation;
+    bool m_isAlive;
 
     static const int MINIMAL_PLANT_GROWTH_STATE;                // minimalny stan wzrostu rośliny
     static const int MAXIMAL_PLANT_GROWTH_STATE;                // maksymalny stan wzrostu rośliny
-    static const int BASE_SNAIL_EATING_VALUE;                   // podstawowa wartość zjadania przez ślimaka
     static const int BASE_PLANT_GROWTH_VALUE;                   // podstawowa wartość zjadania przez ślimaka
     static const int BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE;   // poziom zmiany stanu wzrostu rośliny
 
