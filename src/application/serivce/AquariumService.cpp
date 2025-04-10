@@ -49,26 +49,11 @@ Aquarium AquariumService::initAquariumBasedOnApplicationContext(const Simulation
     // rośliny
     for (int i = 0; i < numPlants; ++i) {
         int x, y, size, growthRate, sizeGrowthCorrelation;
-        if (!context.isRandomEnabled()) {
             x = (i + 1) * aquariumWidth / (numPlants + 2);
             y = 500;
             size = context.plantVolume();
             growthRate = context.plantGrowthRate();
             sizeGrowthCorrelation = context.plantSizeGrowthCorrelation();
-        } else {
-            const int margin = 110;
-            std::uniform_int_distribution<int> distX(margin, aquariumWidth - margin);
-
-            x = distX(gen);
-            std::uniform_int_distribution<int> distYOffset(-10, 10);
-            y = 200 + distYOffset(gen);
-
-            std::uniform_int_distribution<int> distSize(-2, 2);
-            size = std::clamp(context.plantVolume() + distSize(gen), 0, 11);
-
-            growthRate = context.plantGrowthRate();
-            sizeGrowthCorrelation = context.plantSizeGrowthCorrelation();
-        }
         aquarium.addOrganism(std::make_shared<Plant>(x, y, size, growthRate, sizeGrowthCorrelation));
     }
 
