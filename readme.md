@@ -1,0 +1,1 @@
+windeployqt slimaks/cmake-build-debug/slimaks.exe
