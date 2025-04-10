@@ -1,4 +1,4 @@
-# Lista plików źródłowych – tylko logika, bez main.cpp
+
 set(APP_SOURCES
         model/snail.cpp
         model/base/Organism.cpp
@@ -9,7 +9,6 @@ set(APP_SOURCES
         serivce/AquariumService.cpp
 )
 
-# Lista plików nagłówkowych
 set(APP_HEADERS
         model/snail.h
         model/base/Organism.h
