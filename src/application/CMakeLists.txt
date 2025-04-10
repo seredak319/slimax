@@ -18,6 +18,7 @@ set(APP_HEADERS
         model/Plant.h
         model/Aquarium.h
         serivce/AquariumService.h
+        simulation/SimulationStatus.h
 )
 
 add_library(application STATIC

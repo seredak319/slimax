@@ -1,10 +1,7 @@
-//
-// Created by Krystian on 23.03.2025.
-//
-
 #include "SimulationManager.h"
 #include "model/Plant.h"
 #include "model/Snail.h"
+#include "SimulationStatus.h"
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -21,13 +18,12 @@ void SimulationManager::simulate(Aquarium &aquarium) {
     simulateFeeding(aquarium);
 }
 
-bool SimulationManager::isFinished(Aquarium &aquarium) {
+SimulationStatus SimulationManager::getCurrentSimulationStatus(Aquarium &aquarium) {
     if (aquarium.getCurrentIteration() >= aquarium.getTotalIterations()) {
-        return true;
+        return SimulationStatus::IterationLimit;
     }
 
     bool allPlantsDead = true;
-
     bool allSnailsAtMaxAge = true;
 
     for (const auto &organism: aquarium.organisms()) {
@@ -43,7 +39,14 @@ bool SimulationManager::isFinished(Aquarium &aquarium) {
         }
     }
 
-    return allPlantsDead || allSnailsAtMaxAge;
+    if (allPlantsDead) {
+        return SimulationStatus::AllPlantsDead;
+    }
+    if (allSnailsAtMaxAge) {
+        return SimulationStatus::AllSnailsAtMaxAge;
+    }
+
+    return SimulationStatus::Continue;
 }
 
 void SimulationManager::updateSnailPositions(Aquarium &aquarium) {
@@ -59,7 +62,7 @@ void SimulationManager::updateSnailPositions(Aquarium &aquarium) {
     }
 
     std::vector<std::shared_ptr<Snail>> snails;
-    for (auto &organism : organisms) {
+    for (auto &organism: organisms) {
         if (auto snail = std::dynamic_pointer_cast<Snail>(organism)) {
             snails.push_back(snail);
         }
@@ -68,9 +71,9 @@ void SimulationManager::updateSnailPositions(Aquarium &aquarium) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> plantIndexDist(0, plants.size() - 1);
-    std::uniform_int_distribution<int> offsetDist(-30, 30);
+    std::uniform_int_distribution<int> offsetDist(-25, 25);
 
-    for (auto &snail : snails) {
+    for (auto &snail: snails) {
         int randomIndexInPlants = plantIndexDist(gen);
         auto chosenPair = plants[randomIndexInPlants];
         auto chosenPlant = chosenPair.second;
@@ -79,7 +82,7 @@ void SimulationManager::updateSnailPositions(Aquarium &aquarium) {
         if (!chosenPlant->isPlantAlive()) {
             double maxVolume = plants[0].second->getPlantVolume();
             std::pair<int, std::shared_ptr<Plant>> maxPair = plants[0];
-            for (const auto &pair : plants) {
+            for (const auto &pair: plants) {
                 double vol = pair.second->getPlantVolume();
                 if (vol > maxVolume) {
                     maxVolume = vol;

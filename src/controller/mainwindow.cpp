@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow), m_timer(new QTimer(this)),
           m_aquariumService(new AquariumService()),
           m_aquarium(0) {
+
     ui->setupUi(this),
             connect(m_timer, &QTimer::timeout, this, &MainWindow::simulateStep);
 
@@ -71,7 +72,7 @@ void MainWindow::on_pushButton_clicked() {
     ui->progressBar->setMinimum(0);
     ui->progressBar->setMaximum(context.iterationCount());
     ui->progressBar->setValue(0);
-
+    ui->result->setText("Rezultat");
     m_timer->start(SIMULATION_INTERVAL_MS - ui->horizontalSlider_2->value() * 0.01 * SIMULATION_INTERVAL_MS);
 
     std::cout << "Simulation started\n";
@@ -98,7 +99,24 @@ void MainWindow::simulateStep() {
     m_simulatorManager.simulate(m_aquarium);
     ui->progressBar->setValue(m_aquarium.getCurrentIteration());
     m_aquariumView->updateView(m_aquarium, ui->checkBox_2->isChecked());
-    if (m_simulatorManager.isFinished(m_aquarium)) {
+    auto currentResult = m_simulatorManager.getCurrentSimulationStatus(m_aquarium);
+    if (currentResult != SimulationStatus::Continue) {
+        QString resultText;
+        switch (currentResult) {
+            case SimulationStatus::IterationLimit:
+                resultText = "Limit iteracji osiągnięty";
+                break;
+            case SimulationStatus::AllPlantsDead:
+                resultText = "Brak żywych roślin";
+                break;
+            case SimulationStatus::AllSnailsAtMaxAge:
+                resultText = "Wszystkie ślimaki są dorosłe";
+                break;
+            default:
+                resultText = "Symulacja zakończona";
+                break;
+        }
+        ui->result->setText(resultText);
         m_timer->stop();
         std::cout << "Simulation finished\n";
     }

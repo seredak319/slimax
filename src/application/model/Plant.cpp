@@ -2,24 +2,22 @@
 #include "Plant.h"
 #include <iostream>
 
-const int Plant::MINIMAL_PLANT_GROWTH_STATE = 0;
 const int Plant::MAXIMAL_PLANT_GROWTH_STATE = 11;
 const int Plant::BASE_PLANT_GROWTH_VALUE = 10;
 const int Plant::BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE = 100;
 
-Plant::Plant(int x, int y, int initialSize, int initialGrowthRate, int sizeGrowthCorrelation) : Organism(x, y),
-                                                                                                m_initialSize(
-                                                                                                        initialSize),
-                                                                                                m_plantVolume(
-                                                                                                        initialSize *
-                                                                                                        BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE),
-                                                                                                m_isAlive(true),
-                                                                                                m_currentSize(
-                                                                                                        initialSize),
-                                                                                                m_initialGrowthRate(
-                                                                                                        initialGrowthRate),
-                                                                                                m_sizeGrowthCorrelation(
-                                                                                                        sizeGrowthCorrelation) {
+// Dziedziczenie
+Plant::Plant(int x, int initialSize, int initialGrowthRate, int sizeGrowthCorrelation) : Organism(x),
+                                                                                         m_plantVolume(
+                                                                                                 initialSize *
+                                                                                                 BASE_PLANT_GROWTH_THRESHOLD_LEVEL_VALUE),
+                                                                                         m_isAlive(true),
+                                                                                         m_currentSize(
+                                                                                                 initialSize),
+                                                                                         m_initialGrowthRate(
+                                                                                                 initialGrowthRate),
+                                                                                         m_sizeGrowthCorrelation(
+                                                                                                 sizeGrowthCorrelation) {
 }
 
 void Plant::simulateDay() {

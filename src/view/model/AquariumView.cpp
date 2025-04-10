@@ -2,10 +2,15 @@
 #include <memory>
 #include <QCoreApplication>
 #include <QThread>
+#include <QPropertyAnimation>
 #include "model/Plant.h"
 #include "PlantView.h"
 #include "model/Snail.h"
 #include "SnailView.h"
+#include "Interpolator.h"
+
+const int AquariumView::BASE_ANIMATION_DELAY = 50;
+const int AquariumView::BASE_ANIMATION_STEPS_NUMBER = 7;
 
 AquariumView::AquariumView(QWidget *parent)
         : QGraphicsView(parent) {
@@ -74,7 +79,6 @@ void AquariumView::updateView(const Aquarium &aquarium, const bool isAnimated) {
 }
 
 void AquariumView::animateSnailMovement(SnailView *snailView, const QPointF &startPos, const QPointF &endPos) {
-    const int steps = 10;
 
     if (endPos.x() < startPos.x()) {
         QTransform transform;
@@ -84,17 +88,18 @@ void AquariumView::animateSnailMovement(SnailView *snailView, const QPointF &sta
         snailView->setTransform(QTransform());
     }
 
-    qreal dx = (endPos.x() - startPos.x()) / steps;
-    qreal dy = (endPos.y() - startPos.y()) / steps;
-
-    for (int i = 1; i <= steps; ++i) {
-        QPointF newPos(startPos.x() + i * dx, startPos.y() + i * dy);
-        snailView->setPos(newPos);
+    int offset = 20;
+    for (int i = 1; i <= BASE_ANIMATION_STEPS_NUMBER; ++i) {
+        double t = static_cast<double>(i) / BASE_ANIMATION_STEPS_NUMBER;
+        double newX = Interpolator<double>::lerp(startPos.x(), endPos.x()+offset, t);
+        double newY = Interpolator<double>::lerp(startPos.y(), endPos.y(), t);
+        snailView->setPos(newX, newY);
         m_scene->update();
         QCoreApplication::processEvents();
-        QThread::msleep(50);
+        QThread::msleep(BASE_ANIMATION_DELAY);
     }
 }
+
 
 void AquariumView::moveWithoutAnimation(SnailView *snailView, const QPointF &targetPos) {
     snailView->setPos(targetPos);

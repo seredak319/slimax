@@ -1,19 +1,13 @@
-//
-// Created by Krystian on 15.03.2025.
-//
-
 #include <algorithm>
 #include "Snail.h"
 
-const int Snail::MINIMAL_SNAIL_GROWTH_STATE = 0;
 const int Snail::MAXIMAL_SNAIL_GROWTH_STATE = 11;
-const int Snail::BASE_SNAIL_GROWTH_VALUE = 10;
+const int Snail::BASE_SNAIL_GROWTH_VALUE = 20;
 const int Snail::SNAIL_GROWTH_THRESHOLD_LEVEL_VALUE = 100;
 const int Snail::BASE_SNAIL_EATING_VALUE = 30;
 
-Snail::Snail(int x, int y, int initialAge, int initialAppetite, int growthRate,
-             int appetiteAgeCorrelation) : Organism(x, y),
-                                           m_initialAge(initialAge),
+Snail::Snail(int x, int initialAge, int initialAppetite, int growthRate,
+             int appetiteAgeCorrelation) : Organism(x),
                                            m_snailVolume(initialAge * SNAIL_GROWTH_THRESHOLD_LEVEL_VALUE),
                                            m_currentSize(initialAge),
                                            m_initialAppetite(initialAppetite),
@@ -55,7 +49,7 @@ int Snail::getBaseSnailEatingValue() const {
 }
 
 void Snail::setNearbyPlantNumber(int n) {
-   m_nearbyPlantNumber = n;
+    m_nearbyPlantNumber = n;
 }
 
 int Snail::getNearbyPlantNumber() const {

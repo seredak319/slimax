@@ -1,7 +1,3 @@
-//
-// Created by Krystian on 23.03.2025.
-//
-
 #ifndef SLIMAKS_SIMULATIONCONTEXT_H
 #define SLIMAKS_SIMULATIONCONTEXT_H
 
@@ -68,4 +64,4 @@ private:
     int m_randomRate;
 };
 
-#endif //SLIMAKS_SIMULATIONCONTEXT_H
+#endif

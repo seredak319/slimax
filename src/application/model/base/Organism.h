@@ -1,7 +1,3 @@
-//
-// Created by Krystian on 15.03.2025.
-//
-
 #ifndef SLIMAKS_ORGANISM_H
 #define SLIMAKS_ORGANISM_H
 
@@ -15,7 +11,7 @@ class Organism {
 
 public:
 
-    Organism(int x, int y);
+    Organism(int x);
 
     virtual ~Organism() = default;
 
@@ -26,16 +22,11 @@ public:
 
     int x() const;
 
-    int y() const;
-
     void setX(int newX);
-
-    void setY(int newY);
 
 protected:
     int m_x;
-    int m_y;
 };
 
 
-#endif //SLIMAKS_ORGANISM_H
+#endif

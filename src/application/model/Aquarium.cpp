@@ -13,6 +13,7 @@ const std::vector<std::shared_ptr<Organism>>& Aquarium::organisms() const {
     return m_organisms;
 }
 
+// Polimorfizm
 void Aquarium::simulateStep() {
     for (auto &organism : m_organisms) {
         organism->simulateDay();

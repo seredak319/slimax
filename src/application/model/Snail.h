@@ -1,7 +1,3 @@
-//
-// Created by Krystian on 15.03.2025.
-//
-
 #ifndef SLIMAKS_SNAIL_H
 #define SLIMAKS_SNAIL_H
 
@@ -18,7 +14,7 @@ class Snail : public Organism {
 
 public:
 
-    Snail(int x, int y, int initialAge, int initialAppetite, int initialGrowthRate,
+    Snail(int x, int initialAge, int initialAppetite, int initialGrowthRate,
           int appetiteAgeCorrelation);
 
     ~Snail() override = default;
@@ -40,7 +36,6 @@ public:
     bool isMaximumAge() const;
 
 private:
-    int m_initialAge;            ///< Wiek ślimaka
     int m_initialAppetite;    ///< Bieżąca żarłoczność
     int m_currentSize;
     int m_snailVolume;
@@ -49,7 +44,6 @@ private:
     int m_nearbyPlantNumber;
 
 
-    static const int MINIMAL_SNAIL_GROWTH_STATE;           // minimalny stan wzrostu (np. 0)
     static const int MAXIMAL_SNAIL_GROWTH_STATE;           // maksymalny stan wzrostu (np. 11)
     static const int BASE_SNAIL_GROWTH_VALUE;              // bazowa wartość przyrostu "objętości" ślimaka
     static const int BASE_SNAIL_EATING_VALUE;              // podstawowa wartość zjadania przez ślimaka
@@ -57,4 +51,4 @@ private:
 };
 
 
-#endif //SLIMAKS_SNAIL_H
+#endif

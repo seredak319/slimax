@@ -1,33 +1,22 @@
 #include "SnailView.h"
 #include <QPainter>
-#include <iostream>
 
 SnailView::SnailView(QGraphicsItem *parent)
         : QGraphicsPixmapItem(parent), m_currentStage(0) {
-    // Wczytujemy jeden plik grafiki (np. snail.png) z zasobów .qrc
     m_snailPixmap = QPixmap("resources/snail.png");
-
-    // Ustawiamy początkowy etap wzrostu
     setGrowthStage(m_currentStage);
 }
 
-int SnailView::getCurrentHeight() const {
-    return pixmap().height();
-}
-
 void SnailView::setGrowthStage(int stage) {
-    // Zabezpieczenie przed wyjściem poza zakres
     if (stage < 0) stage = 0;
     if (stage > 11) stage = 11;
 
     m_currentStage = stage;
 
-    // Przykładowo skala rośnie od 50% (gdy stage=0) do 150% (gdy stage=11)
     double scaleMin = 0.05;
     double scaleMax = 0.15;
     double factor = scaleMin + (scaleMax - scaleMin) * (static_cast<double>(stage) / 11.0);
 
-    // Tworzymy przeskalowany pixmap
     QPixmap scaled = m_snailPixmap.scaled(
             m_snailPixmap.width() * factor,
             m_snailPixmap.height() * factor,
@@ -35,6 +24,5 @@ void SnailView::setGrowthStage(int stage) {
             Qt::SmoothTransformation
     );
 
-    // Ustawiamy w QGraphicsPixmapItem
     setPixmap(scaled);
 }

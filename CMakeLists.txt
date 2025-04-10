@@ -11,12 +11,10 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_CURRENT_SOURCE_DIR}/src/view)
 
-# Dodajemy podkatalog z biblioteką "application" (logika)
 add_subdirectory(src/application)
 
 qt_standard_project_setup()
 
-# Pliki dla egzekwowanego (GUI) – zawierają main.cpp, mainwindow oraz widżety
 set(SOURCES
         src/main.cpp
         src/controller/mainwindow.cpp
@@ -31,6 +29,7 @@ set(HEADERS
         src/view/model/PlantView.h
         src/view/model/AquariumView.h
         src/view/model/SnailView.h
+        src/view/model/Interpolator.h
 )
 
 add_executable(${PROJECT_NAME}
@@ -41,8 +40,8 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         Qt6::Core
-        Qt6::Widgets   # <-- potrzebne dla QMainWindow, QApplication itd.
-        application    # <-- nasza biblioteka z logiką
+        Qt6::Widgets
+        application
 )
 
 include(GNUInstallDirs)
@@ -61,7 +60,6 @@ qt_generate_deploy_app_script(
 
 install(SCRIPT ${deploy_script})
 
-# Kopiowanie zasobów do folderu build/resources
 file(COPY
         ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_1.png
         ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/plant/wild_plant_grow_2.png
@@ -84,8 +82,6 @@ file(COPY
 )
 
 file(COPY
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/background/background.jpg
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/background/background2.jpg
         ${CMAKE_CURRENT_SOURCE_DIR}/src/view/img/background/background3.jpg
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/resources
 )

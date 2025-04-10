@@ -1,7 +1,3 @@
-//
-// Created by Krystian on 23.03.2025.
-//
-
 #include "SimulationContext.h"
 
 SimulationContext::SimulationContext(int numSnails,
