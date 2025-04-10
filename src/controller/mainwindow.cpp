@@ -42,6 +42,7 @@ void MainWindow::on_pushButton_clicked() {
     std::cout << "Wsp. zarlocznosci od wieku: " << ui->horizontalSlider_6->value() << std::endl;
     std::cout << "Wsp. wzrostu od objetosci: " << ui->horizontalSlider_7->value() << std::endl;
     std::cout << "Tepo symulacji: " << ui->horizontalSlider_2->value() << std::endl;
+    std::cout << "Czy animacja: " << ui->checkBox_2->isChecked() << std::endl;
     std::cout << "Czy dodac losowosc?: " << ui->checkBox->isChecked() << std::endl;
     std::cout << "Wspolczynnik losowosci?: " << ui->horizontalSlider_8->value() << std::endl;
     std::cout << "=== END ===" << std::endl;
@@ -96,7 +97,7 @@ void MainWindow::on_pushButton_3_clicked() {
 void MainWindow::simulateStep() {
     m_simulatorManager.simulate(m_aquarium);
     ui->progressBar->setValue(m_aquarium.getCurrentIteration());
-    m_aquariumView->updateView(m_aquarium);
+    m_aquariumView->updateView(m_aquarium, ui->checkBox_2->isChecked());
     if (m_simulatorManager.isFinished(m_aquarium)) {
         m_timer->stop();
         std::cout << "Simulation finished\n";
