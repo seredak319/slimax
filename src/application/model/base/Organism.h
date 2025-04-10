@@ -3,30 +3,42 @@
 
 /**
  * @class Organism
- * @brief Klasa bazowa dla wszystkich żywych organizmów w symulacji.
+ * @brief Bazowa klasa dla organizmów w symulacji.
  *
- * Definiuje interfejs wspólny (polimorfizm), np. metodę simulateDay().
+ * Definiuje interfejs (m.in. symulację dnia) dla wszystkich organizmów.
  */
 class Organism {
-
 public:
-
+    /**
+     * @brief Konstruktor ustawiający pozycję.
+     * @param x Początkowa pozycja na osi X.
+     */
     Organism(int x);
 
+    /**
+     * @brief Wirtualny destruktor.
+     */
     virtual ~Organism() = default;
 
     /**
-     * @brief Metoda wywoływana co cykl symulacji, pozwala na wzrost, zmiany itp.
+     * @brief Symuluje jeden cykl życia.
      */
     virtual void simulateDay() = 0;
 
+    /**
+     * @brief Zwraca pozycję na osi X.
+     * @return Pozycja X.
+     */
     int x() const;
 
+    /**
+     * @brief Ustawia pozycję na osi X.
+     * @param newX Nowa pozycja.
+     */
     void setX(int newX);
 
 protected:
-    int m_x;
+    int m_x; /**< Pozycja na osi X. */
 };
 
-
-#endif
+#endif // SLIMAKS_ORGANISM_H
